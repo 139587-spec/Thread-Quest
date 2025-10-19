@@ -81,9 +81,143 @@ header .subtitle {
     background-color: #fff0f5;
     padding: 20px;
     border-radius: 15px;
-    text-align: align;
+    text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    margin bottom:25px;
+    margin-bottom:25px;
 }
 
-.yarn-container
+.yarn-container {
+    display: inline-block;
+    position: relative;
+    background: #fff0f5;
+    border-radius: 50%;
+    padding: 10px;
+    animation: yarnPulse 3s ease-in-out infinite alternate;
+    cursor: pointer;
+}
+
+#yarn {
+    width: 120px;
+    transition: transform 0.2s ease;
+}
+
+#yarn:hover {
+    transform: scale(1.05) rotate(-3deg);
+}
+
+#click-effects {
+    position: absolute;
+    top: 0;
+    left: 0; 
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+}
+
+/* Yarn Pulsing Animations */
+@keyframes yarnPulse {
+    0% { background-color: #fff0f5}
+    50% { background-color: #ffe6f3; }
+    100% { background-color: #fff0f5; }
+}
+
+/* Shop Selection */
+.shop.card {
+    background-color: #fff0f5;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.shop-item {
+    background-color: #ffe6f3;
+    padding:12px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.shop-item:hover {
+    transform: scale(1.02);
+    background-color: #ffd9eb;
+}
+
+.shop-item button {
+    background-color: #a64d7e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shop-item button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(166,77,126,0.4);
+}
+
+/* Tool tips for buttons */
+button[data-tooltip] {
+    position: relative;
+}
+
+button[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255,230,243,0.95);
+    color: #5a3a4d;
+    padding 6px 10px;
+    border-radius: 0.8em;
+    white-space: nowrap;
+    bow-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+ /* Crafting section */
+ .crafting.card {
+    background-color: #fff0f5;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+ }
+
+ #crafting-slots {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+ }
+ .crafting-slot {
+    background-color: #ffe6f3;
+    padding: 12px;
+    border-radius: 10px;
+    flex: 1 1 100px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+ }
+
+ .crafting-slot:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(166,77,126,0.3);
+ }
+
+ #inventory {
+    font-weight: bold;
+    margin-bottom: 8px;
+ }
+
+
+
+
+
+
+
