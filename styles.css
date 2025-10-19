@@ -20,7 +20,7 @@ body {
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    animation: fadeIn 1s ease forwards;
+    animation: fadeInUp 1s ease forwards;
 }
 
 /* Headings */
@@ -53,6 +53,11 @@ header .subtitle {
 .stats p {
     font-size: 1.2em;
     font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.stats p.animate pulse {
+    transform: scale(1.1);
 }
 
 .progress-bars {
@@ -94,6 +99,12 @@ header .subtitle {
     padding: 10px;
     animation: yarnPulse 3s ease-in-out infinite alternate;
     cursor: pointer;
+}
+
+@keyframes yarnColorPulse {
+    0% { background-color: #fff0f5; }
+    50% { background-color: #fff6f3; }
+    100% { background-color: #fff0f5; }
 }
 
 #yarn {
@@ -243,7 +254,7 @@ button[data-tooltip]:hover::after {
     list-style: none;
 }
 
-.achievements {
+.achievement {
     background-color: #ffe6f3;
     padding: 10px;
     border-radius: 8px;
@@ -256,6 +267,13 @@ button[data-tooltip]:hover::after {
     color: #4b2c3b;
     box-shadow: 0 0 12px #ffd700;
     transform: scale(1.03); 
+    animation: shine 1s ease forwards;
+}
+
+@keyframes shine {
+    0% { box-shadow: 0 0 0px #ffd700; }
+    50% { box-shadow: 0 0 20px #ffd700; }
+    100% { box-shadow: 0 0 0px #ffd700; }
 }
 
 /* Pop-ups */
@@ -299,6 +317,13 @@ footer {
     from { opacity: 0;}
     to { opacity: 1;}
 }
+
+@keyframes bgPulse {
+    0% { background: linear-gradient(135deg,#fff0f5,#ffe6f3); }
+    50% { background: linear-gradient(135deg,#ffe6f3,#fff0f5); }
+    100% { background: linear-gradient(135deg,#fff0f5,#ffe6f3); }
+}
+
 
 /* --- Responsive animations--- */
 @media (max-width: 600px) {
