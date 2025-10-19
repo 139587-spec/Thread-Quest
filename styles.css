@@ -7,7 +7,7 @@
 
 body {
     font-family: "Georgia", "Times New Roman", serif;
-    background: linear-gradient(135deg,#fff0f5,#ffe6f3);
+    background: linear-gradient(135deg,#dcd0ff,#c0e0ff);
     color: #6b3a57;
     line-height: 1.6;
     padding: 20px;
@@ -16,7 +16,7 @@ body {
 .container {
     max-width: 900px;
     margin: 0 auto;
-    background-color: #fff4fb;
+    background-color: #dcd0ff;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.08);
@@ -31,13 +31,13 @@ header {
 
 header h1 {
     font-size: 2.4em;
-    color: #a64d7e;
+    color: #7c6cb8;
     text-shadow: 1px 1px 4px rgba(255,230,243,0.6);
 }
 
 header .subtitle {
     font-style: italic;
-    color: #d98cb3;
+    color: #a3b1e1;
     font-size: 1.2em;
     animation: fadeIn 2s ease forwards;
 }
@@ -68,7 +68,7 @@ header .subtitle {
 .progress-bar {
     width:100%;
     height:18px;
-    background: #ffe6f3;
+    background: #c0e0ff;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -76,25 +76,25 @@ header .subtitle {
 .progress-fill {
     height:100%;
     width: 0%;
-    background-color: #a64d7e;
+    background-color: #7c6cb8;
     border-radius: 12px;
     transition: width 0.5s ease;
 }
 
 /* The Clicking Zone */
 .click-zone.card {
-    background-color: #fff0f5;
+    background-color: #dcd0ff;
     padding: 20px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(155,140,255,0.15);
     margin-bottom:25px;
 }
 
 .yarn-container {
     display: inline-block;
     position: relative;
-    background: #fff0f5;
+    background: #dcd0ff;
     border-radius: 50%;
     padding: 10px;
     animation: yarnPulse 3s ease-in-out infinite alternate;
@@ -102,9 +102,9 @@ header .subtitle {
 }
 
 @keyframes yarnColorPulse {
-    0% { background-color: #fff0f5; }
-    50% { background-color: #fff6f3; }
-    100% { background-color: #fff0f5; }
+    0% { background-color: #dcd0ff; }
+    50% { background-color: #c0e0ff; }
+    100% { background-color: #dcd0ff; }
 }
 
 #yarn {
@@ -127,22 +127,22 @@ header .subtitle {
 
 /* Yarn Pulsing Animations */
 @keyframes yarnPulse {
-    0% { background-color: #fff0f5}
-    50% { background-color: #ffe6f3; }
-    100% { background-color: #fff0f5; }
+    0% { background-color: #dcd0ff}
+    50% { background-color: #c0e0ff; }
+    100% { background-color: #dcd0ff; }
 }
 
 /* Shop Selection */
 .shop.card {
-    background-color: #fff0f5;
+    background-color: #dcd0ff;
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(155,140,255,0.15);
 }
 
 .shop-item {
-    background-color: #ffe6f3;
+    background-color: #c0e0ff;
     padding:12px;
     border-radius: 10px;
     margin-bottom: 12px;
@@ -154,11 +154,11 @@ header .subtitle {
 
 .shop-item:hover {
     transform: scale(1.02);
-    background-color: #ffd9eb;
+    background-color: #e6d9ff;
 }
 
 .shop-item button {
-    background-color: #a64d7e;
+    background-color: #7c6cb8;
     color: white;
     border: none;
     border-radius: 8px;
@@ -169,7 +169,7 @@ header .subtitle {
 
 .shop-item button:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(166,77,126,0.4);
+    box-shadow: 0 4px 12px rgba(181,160,255,0.4);
 }
 
 /* Tool tips for buttons */
@@ -183,21 +183,21 @@ button[data-tooltip]:hover::after {
     bottom: 110%;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(255,230,243,0.95);
-    color: #5a3a4d;
+    background: rgba(230,240,255,0.95);
+    color: #4a3d7a;
     padding: 6px 10px;
     border-radius: 0.8em;
     white-space: nowrap;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(225,230,255,0.25);
     z-index: 10;
 }
  /* Crafting section */
  .crafting.card {
-    background-color: #fff0f5;
+    background-color: #dcd0ff;
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(155,140,255,0.15);
  }
 
  #crafting-slots {
@@ -207,7 +207,7 @@ button[data-tooltip]:hover::after {
     margin-bottom: 12px;
  }
  .crafting-slot {
-    background-color: #ffe6f3;
+    background-color: #c0e0ff;
     padding: 12px;
     border-radius: 10px;
     flex: 1 1 100px;
@@ -218,7 +218,7 @@ button[data-tooltip]:hover::after {
 
  .crafting-slot:hover {
     transform: scale(1.03);
-    box-shadow: 0 4px 12px rgba(166,77,126,0.3);
+    box-shadow: 0 4px 12px rgba(181,160,255,0.3);
  }
 
  #inventory {
@@ -227,7 +227,7 @@ button[data-tooltip]:hover::after {
  }
 
  #sell-items {
-    background-color: #a64d7e;
+    background-color: #7c6cb8;
     color: white;
     border: none;
     padding: 10px 16px;
@@ -238,16 +238,16 @@ button[data-tooltip]:hover::after {
 
 #sell-items:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(166,77,126,0.4);
+    box-shadow: 0 4px 12px rgba(181,160,255,0.4);
 }
 
 /* Achievements */
 .achievements.card {
-    background-color: #fff0f5;
+    background-color: #dcd0ff;
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(155,140,255,0.15);
 }
 
 .achievements ul {
@@ -255,7 +255,7 @@ button[data-tooltip]:hover::after {
 }
 
 .achievement {
-    background-color: #ffe6f3;
+    background-color: #c0e0ff;
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 8px;
@@ -263,17 +263,17 @@ button[data-tooltip]:hover::after {
 }
 
 .achievement.unlocked {
-    background-color: #ffd700;
-    color: #4b2c3b;
-    box-shadow: 0 0 12px #ffd700;
+    background-color: #b5a0ff;
+    color: #3b2f73;
+    box-shadow: 0 0 12px #b5a0ff;
     transform: scale(1.03); 
     animation: shine 1s ease forwards;
 }
 
 @keyframes shine {
-    0% { box-shadow: 0 0 0px #ffd700; }
-    50% { box-shadow: 0 0 20px #ffd700; }
-    100% { box-shadow: 0 0 0px #ffd700; }
+    0% { box-shadow: 0 0 0px #b5a0ff; }
+    50% { box-shadow: 0 0 20px #b5a0ff; }
+    100% { box-shadow: 0 0 0px #b5a0ff; }
 }
 
 /* Pop-ups */
@@ -282,13 +282,13 @@ button[data-tooltip]:hover::after {
     top: 10%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: rgba(255,230,243,0.95);
-    color: #6b3a57;
+    background-color: rgba(230,240,255,0.95);
+    color: 4a4f70;
     padding: 12px 20px;
     border-radius: 12px;
     font-weight: bold;
     display: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 12px rgba(50,70,120,0.2);
     animation: popupAnim 0.5s ease forwards;
 }
 
@@ -300,11 +300,11 @@ button[data-tooltip]:hover::after {
 /* Footer */
 footer {
     text-align: center;
-    color: #a67a9a;
+    color: #9a8fd9;
     font-size: 0.9em;
     margin-top: 40px;
     padding-top: 20px;
-    border-top: 2px dashed #e8d6c3;
+    border-top: 2px dashed #d8d8f0;
 }
 
 /* Animations */
@@ -319,9 +319,9 @@ footer {
 }
 
 @keyframes bgPulse {
-    0% { background: linear-gradient(135deg,#fff0f5,#ffe6f3); }
-    50% { background: linear-gradient(135deg,#ffe6f3,#fff0f5); }
-    100% { background: linear-gradient(135deg,#fff0f5,#ffe6f3); }
+    0% { background: linear-gradient(135deg,#dcd0ff,#c0e0ff); }
+    50% { background: linear-gradient(135deg,#c0e0ff,#dcd0ff); }
+    100% { background: linear-gradient(135deg,#dcd0ff,#c0e0ff); }
 }
 
 
