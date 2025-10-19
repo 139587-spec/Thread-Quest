@@ -215,9 +215,82 @@ button[data-tooltip]:hover::after {
     margin-bottom: 8px;
  }
 
+ #sell-items {
+    background-color: #a64d7e;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
+#sell-items:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(166,77,126,0.4);
+}
 
+/* Achievements */
+.achievements.card {
+    background-color: #fff0f5;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
 
+.achievements ul {
+    list-style: none;
+}
+
+.achievements {
+    background-color: #ffe6f3;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.achievement.unlocked {
+    background-color: #ffd700;
+    color: #4b2c3b;
+    box-shadow: 0 0 12px #ffd700;
+    transform: scale(1.03); 
+}
+
+/* Pop-ups */
+#popup {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255,230,243,0.95);
+    color: #6b3a57;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    display: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: popupAnim 0.5s ease forwards;
+}
+
+@keyframes popupAnim {
+    0% { opacity: 0; transform: translate(-50%, -20px); }
+    100% { opacity: 1; transform: translate(-50%, 0); }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    color: #a67a9a;
+    font-size: 0.9em;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px dashed #e8d6c3;
+}
+
+/* Animations */
+@keyframes fadeInUp
 
 
 
