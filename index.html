@@ -15,7 +15,8 @@
     </header>   
 
     <main>
-        <section class="intro">
+      <!--Stats Section-->   
+      <section class="stats">
           <p>🧵 Stitches: <span id="stitches">0</span></p>
           <p>💰 Coins: <span id="coins">0</span></p>
           <div class="progress-bars">
@@ -33,9 +34,73 @@
             </div>
          </div>
         </section>
-          
+
+      <!--Click Zone-->
+      <section class="click-zone">
+        <div class="click-zone">
+          <img scr="assets/yarn.png" alt="Yarn Ball" id="yarn">
+          <div id="click effects"></div> <!--For Sparkles/Animations-->
+        </div>
+        <p>Click the yarn to earn stitches!</p>
+      </section>
+
+      <!--Shop Section-->
+      <section class="shop">
+        <h2>🛒 Shop & Upgrades</h2>
+        <div class="shop-item">
+          <button id="upgrade-hook">Upgrade Hook</button>
+          <p>Cost: 50 Coins | +1 stitch/click</p>
+        </div>
+        <div class="shop-item">
+          <button id="hire-helper">Hire Helper</button>
+          <p>Cost: 200 Coins | +1 stitch/sec</p>
+        </div>
+        <div class="shop-item">
+          <button id="buy-yarn">Buy Rare Yarn</button>
+          <p>Cost: 300 Coins | x2 stitches for 30s</p>
+        </div>
+        <div class ="shop-item">
+          <button id="expand-workshop">Expand Workshop</button>
+          <p>Cost: 500 Coins | +1 crafting slot</p>
+        </div>
+      </section>
+
+      <!--Crafting Section-->
+      <section class="crafting">
+        <h2>🎨 Crafting Station</h2>
+        <div class="crafting-slot">
+         <!--Slots are dynamically populated, each slot for scarf, hat and blankets-->
+        </div>
+        <p id="inventory">Scarf: 0 | Hat: 0 | Blanket: 0</p>
+        <button id="sell-items">Sell All Items</button>
+      </section>
+
+      <!--Achievements Section-->
+      <section class="achievements">
+        <h2>🏅 Achievements</h2>
+        <ul id="achievements-list">
+          <!--Badges are dynamically populated here-->
+          <li class="achievements" data-name="First Stitch">First Stitch: Click 1 yarn</li>
+          <li class="achievements" data-name="First Craft">First Craft: Craft a Scarf</li>
+          <li class="achievements" data-name="Helper Hired">Hire a Helper</li>
+          <li class="achievements" data-name="Hook Upgraded">Upgrade your Hook</li>
+          <li class="achievements" data-name="Master Crafter">Craft 50 items</li>
+        </ul>
+      </section>
+
+      <!--Pop up Events-->
+      <div id="popup" class="popup">
 
     </main>
+
+    <footer>
+      <p>© 2024 Thread Quest. All rights reserved. 🧵 Keep crafting and clicking! - by Avantika Satheesh</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
 
 
 
