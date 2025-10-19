@@ -56,11 +56,11 @@ header .subtitle {
 }
 
 .progress-bars {
-    display:flex;
+    display: flex;
     gap: 20px;
 }
 
-.progress-bars {
+.progress-bar {
     width:100%;
     height:18px;
     background: #ffe6f3;
@@ -174,10 +174,10 @@ button[data-tooltip]:hover::after {
     transform: translateX(-50%);
     background: rgba(255,230,243,0.95);
     color: #5a3a4d;
-    padding 6px 10px;
+    padding: 6px 10px;
     border-radius: 0.8em;
     white-space: nowrap;
-    bow-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     z-index: 10;
 }
  /* Crafting section */
@@ -290,7 +290,40 @@ footer {
 }
 
 /* Animations */
-@keyframes fadeInUp
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0;}
+    to { opacity: 1;}
+}
+
+/* --- Responsive animations--- */
+@media (max-width: 600px) {
+    .progress-bars {
+        flex-direction: column;
+
+    }
+
+    .crafting-slot {
+        flex: 1 1 100%;
+    }
+
+    .shop-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    header .subtitle {
+        font-size: 1em;
+    }
+}
 
 
 
