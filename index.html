@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container"></div>
+  <div class="container">
    <!--Header-->
     <header>
       <h1>Thread Quest 🧵</h1>
@@ -25,7 +25,7 @@
                 <div class="progress-bar">
                   <div id="hook-level" class="progress-fill"></div>
                 </div>
-            <div>
+              </div>
             <div class="progress-container">
                 <p>Helper Level</p>
                 <div class="progress-bar">
@@ -68,7 +68,7 @@
       <!--Crafting Section-->
       <section class="crafting card">
         <h2>🎨 Crafting Station</h2>
-        <div class="crafting-slot">
+        <div id="crafting-slots">
          <!--Slots are dynamically populated, each slot for scarf, hat and blankets-->
         </div>
         <p id="inventory">Scarf: 0 | Hat: 0 | Blanket: 0</p>
@@ -78,13 +78,13 @@
       <!--Achievements Section-->
       <section class="achievements card">
         <h2>🏅 Achievements</h2>
-        <ul id="achievements-list">
+        <ul id="achievement-list">
           <!--Badges are dynamically populated here-->
-          <li class="achievements" data-name="First Stitch">First Stitch: Click 1 yarn</li>
-          <li class="achievements" data-name="First Craft">First Craft: Craft a Scarf</li>
-          <li class="achievements" data-name="Helper Hired">Hire a Helper</li>
-          <li class="achievements" data-name="Hook Upgraded">Upgrade your Hook</li>
-          <li class="achievements" data-name="Master Crafter">Craft 50 items</li>
+          <li class="achievement" data-name="First Stitch">First Stitch: Click 1 yarn</li>
+          <li class="achievement" data-name="First Craft">First Craft: Craft a Scarf</li>
+          <li class="achievement" data-name="Helper Hired">Hire a Helper</li>
+          <li class="achievement" data-name="Hook Upgraded">Upgrade your Hook</li>
+          <li class="achievement" data-name="Master Crafter">Craft 50 items</li>
         </ul>
       </section>
 
@@ -94,7 +94,7 @@
 
     <!--Footer Section-->
     <footer>
-      <p>© 2024 Thread Quest. All rights reserved. 🧵 Keep crafting and clicking! - by Avantika Satheesh</p>
+      <p>© 2024 Thread Quest. All rights reserved. 🧵 Keep crafting and clicking! — by Avantika Satheesh</p>
     </footer>
   </div>
 
@@ -127,4 +127,3 @@
 
 
 
-</body>
