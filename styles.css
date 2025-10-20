@@ -7,7 +7,7 @@
 
 body {
     font-family: "Georgia", "Times New Roman", serif;
-    background: linear-gradient(135deg,#dcd0ff,#c0e0ff);
+    background: linear-gradient(135deg,#dcd0ff,#a9b1ef);
     color: #6b3a57;
     line-height: 1.6;
     padding: 20px;
@@ -37,7 +37,7 @@ header h1 {
 
 header .subtitle {
     font-style: italic;
-    color: #a3b1e1;
+    color: #887ad0;
     font-size: 1.2em;
     animation: fadeIn 2s ease forwards;
 }
@@ -68,7 +68,7 @@ header .subtitle {
 .progress-bar {
     width:100%;
     height:18px;
-    background: #c0e0ff;
+    background: #b7a9ef;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -91,44 +91,69 @@ header .subtitle {
     margin-bottom:25px;
 }
 
+/* Yarn Container - just for positioning the sparkles */
 .yarn-container {
     display: inline-block;
     position: relative;
-    background: #dcd0ff;
-    border-radius: 50%;
-    padding: 10px;
-    animation: yarnPulse 3s ease-in-out infinite alternate;
     cursor: pointer;
+    width: 180px;
+    height: 180px;
 }
 
-@keyframes yarnColorPulse {
-    0% { background-color: #dcd0ff; }
-    50% { background-color: #c0e0ff; }
-    100% { background-color: #dcd0ff; }
+.yarn-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 200px;
+    transform: tranlate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradiant(circle, rgba(166, 120, 255, 0.4) 0%, rgba(166, 120, 250, 0) 70%);
+    filter: blur(20px);
+    z-index: -1;
+    animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
 }
 
 #yarn {
-    width: 120px;
-    transition: transform 0.2s ease;
+    width: 180px;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.15s ease;
 }
 
 #yarn:hover {
-    transform: scale(1.05) rotate(-3deg);
+    transform: scale(1.05);
 }
 
 #click-effects {
     position: absolute;
     top: 0;
     left: 0; 
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
 }
 
 /* Yarn Pulsing Animations */
 @keyframes yarnPulse {
     0% { background-color: #dcd0ff}
-    50% { background-color: #c0e0ff; }
+    50% { background-color: #a9b1ef; }
     100% { background-color: #dcd0ff; }
 }
 
@@ -142,7 +167,7 @@ header .subtitle {
 }
 
 .shop-item {
-    background-color: #c0e0ff;
+    background-color: #b7a9ef;
     padding:12px;
     border-radius: 10px;
     margin-bottom: 12px;
@@ -207,7 +232,7 @@ button[data-tooltip]:hover::after {
     margin-bottom: 12px;
  }
  .crafting-slot {
-    background-color: #c0e0ff;
+    background-color: #b7a9ef;
     padding: 12px;
     border-radius: 10px;
     flex: 1 1 100px;
@@ -255,7 +280,7 @@ button[data-tooltip]:hover::after {
 }
 
 .achievement {
-    background-color: #c0e0ff;
+    background-color: #b7a9ef;
     padding: 10px;
     border-radius: 8px;
     margin-bottom: 8px;
@@ -300,7 +325,7 @@ button[data-tooltip]:hover::after {
 /* Footer */
 footer {
     text-align: center;
-    color: #9a8fd9;
+    color: #887ad0;
     font-size: 0.9em;
     margin-top: 40px;
     padding-top: 20px;
@@ -319,9 +344,9 @@ footer {
 }
 
 @keyframes bgPulse {
-    0% { background: linear-gradient(135deg,#dcd0ff,#c0e0ff); }
-    50% { background: linear-gradient(135deg,#c0e0ff,#dcd0ff); }
-    100% { background: linear-gradient(135deg,#dcd0ff,#c0e0ff); }
+    0% { background: linear-gradient(135deg,#dcd0ff,#a9b1ef); }
+    50% { background: linear-gradient(135deg,#a9b1ef,#dcd0ff); }
+    100% { background: linear-gradient(135deg,#dcd0ff,#a9b1ef); }
 }
 
 

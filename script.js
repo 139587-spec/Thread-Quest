@@ -148,7 +148,7 @@ hireHelperBtn.addEventListener('click', () => {
         helperLevel += 1;
         stitchesPerSecond += 1;
         updateDisplay();
-        unlockedAchievement('Helper Hired!');
+        unlockAchievement('Helper Hired!');
     } else showPopup('Sorry, not enough coins!');
 });
 
@@ -198,13 +198,13 @@ function craftItem(item) {
         Blanket: 60
     };
 
-    const cost = costs[items];
+    const cost = costs[item];
 
     //Check if enough stitches
     if (stitches >=cost) {
         stitches -= cost;
         inventory[item] += 1;
-        showPopup(`Crafted a ${item}! (-${cost} stitches)`);
+        showPopup(`Crafted a ${item}!`);
         updateDisplay();
 
         //unlock Achievements
@@ -239,6 +239,7 @@ setInterval(() => {
 }, 1000);
 
 //Initialize
+window.craftItem = craftItem; //Make craftItem globally accessible
 updateDisplay();
 
 
