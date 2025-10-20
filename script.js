@@ -221,15 +221,22 @@ function craftItem(item) {
 
 //Selling Items
 sellItemsBtn.addEventListener('click', () => {
-    const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
-    if (totalItems > 0) {
-        coins += totalItems * 10;
+    if (inventory.Scarf + inventory.Hat + inventory.Blanket > 0) {
+        //calculate the coins based off of the item
+        const earnedCoins = inventory.Scarf * 5 + inventory.Hat * 10 + inventory.Blanket * 20;
+        
+        coins += earnedCoins;
+        
+        //reset the inventory
         inventory.Scarf = 0;
         inventory.Hat = 0;
         inventory.Blanket = 0;
+        
         updateDisplay();
-        showPopup(`Sold ${totalItems} items for ${totalItems * 10} coins!`);
-    } else showPopup('No items to sell!');
+        showPopup(`Sold all items for ${earnedCoins} coins!`);
+    } else {
+        showPopup('No items to sell!');
+    }
 });
 
 //The Passive Income from Helpers
@@ -241,6 +248,10 @@ setInterval(() => {
 //Initialize
 window.craftItem = craftItem; //Make craftItem globally accessible
 updateDisplay();
+
+//glow pulse for yarn
+const yarnElement = document.getElementById('yarn');
+yarnElement.classList.add('yarn-glow-animation');
 
 
 
