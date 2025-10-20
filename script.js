@@ -163,12 +163,47 @@ function createCraftingSlot() {
     for (let i = 0; i < craftingSlots; i++) {
         const slot = document.createElement('div');
         slot.className = 'crafting-slot';
-        slot.innerHTML =
+        slot.innerHTML = `
           <button onclick="craftItem('Scarf')">Scarf</button>
           <button onclick="craftItem('Hat')">Hat</button>
-            <button onclick="craftItem('Blanket')">Blanket</button>
-    ;
-    craftingSlotsContainer.appendChild(slot);
+          <button onclick="craftItem('Blanket')">Blanket</button>
+        `;
+        craftingSlotsContainer.appendChild(slot);
     }
 }
+createCraftingSlot();
+
+function craftItem(item) {
+    inventory[item] += 1;
+    showPopup(`Crafted a ${item}!`);
+    updateDisplay();
+
+    if (inventory.Scarf + inventory.Hat + inventory.Blanket === 1) unlockAchievemnet('First Craft');
+
+    const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
+    if (totalItems >= 50) unlockAcheivement('Master Crafter');
+}
+
+//Selling Items
+sellItemsBtn.addEventListener('click', () => {
+    const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
+    if (totalItems > 0) {
+        coins += totalItems * 10;
+        inventory.Scarf = 0;
+        inventory.Hat = 0;
+        inventory.Blanket = 0;
+        updateDisplay();
+        showPopup(`Sold ${totalItems} items for ${totalItems * 10} coins!`);
+    } else showPopup('No items to sell!');
+});
+
+//The Passive Income from Helpers
+setInterval(() => {
+    stitches += stitchesPerSecond;
+    updateDisplay();
+}, 1000);
+
+
+
+
 
