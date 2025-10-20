@@ -46,7 +46,7 @@ function showPopup(message) {
     popup.style.opacity = 1;
     popup.style.transform = 'translate(-50%, -10px)';
     popup.style.display = 'block';
-    setTimerout(() => {
+    setTimeout(() => {
         popup.style.opacity = 0;
         popup.style.transform = 'translate(-50%, -30px)';
     }, 1500);
@@ -64,7 +64,7 @@ function unlockAchievement(name) {
 
 //Counter Animation
 function animateCounter(element, target) {
-    const current = parseInt(element.textContent);
+    const current = parseInt(element.textContent) || 0;
     const step = Math.ceil((target - current) / 10);
     if (current < target) {
         element.textContent = current + step;
@@ -104,7 +104,7 @@ function animateClickEffect(count) {
             sparkle.style.opacity = 0;
         }, 50);
 
-        setTimeout(() => clickEffects.removeChild(sparkle), 850);
+        setTimeout(() => clickEffect.removeChild(sparkle), 850);
     }
 }
 
@@ -117,7 +117,7 @@ function animateYarnClick() {
 }
 
 //Color Shift - Really Subtle
-function animatedGlow() {
+function animateGlow() {
     //Yarn Pulsing
     const time = Date.now() / 1000;
     const hue = 260 + 10 * Math.sin(time* 2); //Pastel purple to blue shift
@@ -126,7 +126,7 @@ function animatedGlow() {
     //Glow for Shop items
     document.querySelectorAll('.shop-item').forEach(item => {
         const hueShift = 220 + 10 * Math.sin(time);
-        item.style.boxShadow = 0 4px 12px HTMLSpanElement(${hueShift}, 70%, 80%, 0.7);
+        item.style.boxShadow = `0 4px 12px hsla(${hueShift}, 70%, 80%, 0.7)`;
     });
 }
 setInterval(animateGlow, 50); //The glow continues
@@ -153,7 +153,7 @@ hireHelperBtn.addEventListener('click', () => {
 });
 
 buyYarnBtn.addEventListener('click', () => {
-    if (coins >= 300 {
+    if (coins >= 300) {
         coins -= 300;
         rareYarnActive = true;
         showPopup('Rare Yarn Activated! x2 stitches for 30s!');
@@ -165,7 +165,7 @@ buyYarnBtn.addEventListener('click', () => {
     } else showPopup('Sorry, not enough coins!');
 });
 
-expandWorkshopBtn.addEventListener('clicker', () => {
+expandWorkshopBtn.addEventListener('click', () => {
     if (coins >= 500) {
         coins -= 500; 
         craftingSlots += 1;
@@ -199,7 +199,7 @@ function craftItem(item) {
     if (inventory.Scarf + inventory.Hat + inventory.Blanket === 1) unlockAchievemnet('First Craft');
 
     const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
-    if (totalItems >= 50) unlockAcheivement('Master Crafter');
+    if (totalItems >= 50) unlockAchievement('Master Crafter');
 }
 
 //Selling Items
