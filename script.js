@@ -75,5 +75,41 @@ function animateCounter(element, target) {
 //How the Clicker Works
 yarn.addEventListener('click', () => {
     let earned = stitchesPerClick;
-})
+    if (rareYarnActive) earned *=2;
+    stitches += earned;
 
+    animateClickEffect(5); //Create Multiple sparkles
+    animateYarnClick();
+    updateDisplay();
+    unlockAchievement('First Stitch');
+});
+
+//The Multiple Sparkles
+function animateClickEffect(count) {
+    for (let i = 0; i < count; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.textContent = '✨';
+        sparkle.style.position = 'absolute';
+        sparkle.style.top = `${(Math.random() - 0.5) * 50}px`;
+        sparkle.style.left = `${(Math.random() - 0.5) * 50}px`;
+        sparkle.style.fontsize = `${Math.random() * 20}px`;
+        sparkle.style.opacity = 1;
+        sparkle.style.transition = 'all 0.8s ease-out';
+        clickEffects.appendChild(sparkle);
+
+        setTimeout(() => {
+            sparkle.style.top = `${parseFloat(sparkle.style.top) - 30}px`;
+            sparkle.style.opacity = 0;
+        }, 50);
+
+        setTimeout(() => clickEffects.removeChild(sparkle), 850);
+    }
+}
+
+//The Yarn Bounce Effects
+function animateYarnClick() {
+    yarn.style.transform = 'scale(1.15) rotate(-5deg)';
+    setTimeout(() => {
+        yarn.style.transform = 'scale(1) rotate(0deg)';
+    }, 150);
+}
