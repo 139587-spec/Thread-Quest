@@ -38,12 +38,14 @@ function updateDisplay() {
     hookBar.style.width = `${Math.min(hookLevel * 20, 100)}%`; 
     helperBar.style.width = `${Math.min(helperLevel * 20,100)}%`;
     inventoryDisplay.textContent = `Scarf: ${inventory.Scarf} | Hat: ${inventory.Hat} | Blanket: ${inventory.Blanket}`;
+    animateGlow();
 }
 
 function showPopup(message) {
     popup.textContent = message;
     popup.style.opacity = 1;
-    popup.style.transform = 'translate(-50%, -30px)';
+    popup.style.transform = 'translate(-50%, -10px)';
+    popup.style.display = 'block';
     setTimerout(() => {
         popup.style.opacity = 0;
         popup.style.transform = 'translate(-50%, -30px)';
@@ -54,7 +56,7 @@ function unlockAchievement(name) {
     const achievement = [...achievementList.children].find(a => a.dataset.name === name);
     if (achievement && !achievement.classList.contains('unlocked')) {
         achievement.classList.add('unlocked');
-        achievement.style.transform = 'scale(1)', 500;
+        achievement.style.transform = 'scale(1.1)';
         setTimeout(() => achievement.style.transform = 'scale(1)', 500);
         showPopup(`Achievement Unlocked: ${name}`);
     }
@@ -92,10 +94,10 @@ function animateClickEffect(count) {
         sparkle.style.position = 'absolute';
         sparkle.style.top = `${(Math.random() - 0.5) * 50}px`;
         sparkle.style.left = `${(Math.random() - 0.5) * 50}px`;
-        sparkle.style.fontsize = `${Math.random() * 20}px`;
+        sparkle.style.fontSize = `${Math.random() * 12}px`;
         sparkle.style.opacity = 1;
         sparkle.style.transition = 'all 0.8s ease-out';
-        clickEffects.appendChild(sparkle);
+        clickEffect.appendChild(sparkle);
 
         setTimeout(() => {
             sparkle.style.top = `${parseFloat(sparkle.style.top) - 30}px`;
@@ -113,6 +115,21 @@ function animateYarnClick() {
         yarn.style.transform = 'scale(1) rotate(0deg)';
     }, 150);
 }
+
+//Color Shift - Really Subtle
+function animatedGlow() {
+    //Yarn Pulsing
+    const time = Date.now() / 1000;
+    const hue = 260 + 10 * Math.sin(time* 2); //Pastel purple to blue shift
+    yarn.style.boxShadow = `0 0 20px hsla(${hue}, 70%, 80%, 0.7)`;
+
+    //Glow for Shop items
+    document.querySelectorAll('.shop-item').forEach(item => {
+        const hueShift = 220 + 10 * Math.sin(time);
+        item.style.boxShadow = 0 4px 12px HTMLSpanElement(${hueShift}, 70%, 80%, 0.7);
+    });
+}
+setInterval(animateGlow, 50); //The glow continues
 
 //Buttons for Shop
 upgradeHookBtn.addEventListener('click', () => {
@@ -150,7 +167,8 @@ buyYarnBtn.addEventListener('click', () => {
 
 expandWorkshopBtn.addEventListener('clicker', () => {
     if (coins >= 500) {
-        coins -= 500; craftingSlots += 1;
+        coins -= 500; 
+        craftingSlots += 1;
         createCraftingSlot();
         updateDisplay();
         showPopup("Workshop Expanded!");
@@ -202,6 +220,9 @@ setInterval(() => {
     stitches += stitchesPerSecond;
     updateDisplay();
 }, 1000);
+
+//Initialize
+updateDisplay();
 
 
 
