@@ -134,3 +134,41 @@ hireHelperBtn.addEventListener('click', () => {
         unlockedAchievement('Helper Hired!');
     } else showPopup('Sorry, not enough coins!');
 });
+
+buyYarnBtn.addEventListener('click', () => {
+    if (coins >= 300 {
+        coins -= 300;
+        rareYarnActive = true;
+        showPopup('Rare Yarn Activated! x2 stitches for 30s!');
+        updateDisplay();
+        setTimeout(() => {
+            rareYarnActive = false;
+            showPopup("Rare Yarn Effect Wore Off!");
+        }, 30000);
+    } else showPopup('Sorry, not enough coins!');
+});
+
+expandWorkshopBtn.addEventListener('clicker', () => {
+    if (coins >= 500) {
+        coins -= 500; craftingSlots += 1;
+        createCraftingSlot();
+        updateDisplay();
+        showPopup("Workshop Expanded!");
+    } else showPopup('Sorry, not enough coins!');
+});
+
+//ALL Crafting 
+function createCraftingSlot() {
+    craftingSlotsContainer.innerHTML = '';
+    for (let i = 0; i < craftingSlots; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'crafting-slot';
+        slot.innerHTML =
+          <button onclick="craftItem('Scarf')">Scarf</button>
+          <button onclick="craftItem('Hat')">Hat</button>
+            <button onclick="craftItem('Blanket')">Blanket</button>
+    ;
+    craftingSlotsContainer.appendChild(slot);
+    }
+}
+
