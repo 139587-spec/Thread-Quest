@@ -113,3 +113,24 @@ function animateYarnClick() {
         yarn.style.transform = 'scale(1) rotate(0deg)';
     }, 150);
 }
+
+//Buttons for Shop
+upgradeHookBtn.addEventListener('click', () => {
+    if (coins >= 50) {
+        coins -= 50;
+        hookLevel += 1;
+        stitchesPerClick += 1;
+        updateDisplay();
+        unlockAchievement('Hook Upgraded!');
+    } else showPopup('Sorry, not enough coins!');
+});
+
+hireHelperBtn.addEventListener('click', () => {
+    if (coins >= 200) {
+        coins -= 200;
+        helperLevel += 1;
+        stitchesPerSecond += 1;
+        updateDisplay();
+        unlockedAchievement('Helper Hired!');
+    } else showPopup('Sorry, not enough coins!');
+});
