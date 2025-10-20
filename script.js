@@ -192,14 +192,31 @@ function createCraftingSlot() {
 createCraftingSlot();
 
 function craftItem(item) {
-    inventory[item] += 1;
-    showPopup(`Crafted a ${item}!`);
-    updateDisplay();
+    const costs = {
+        Scarf: 20,
+        Hat: 35,
+        Blanket: 60
+    };
 
-    if (inventory.Scarf + inventory.Hat + inventory.Blanket === 1) unlockAchievemnet('First Craft');
+    const cost = costs[items];
 
-    const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
-    if (totalItems >= 50) unlockAchievement('Master Crafter');
+    //Check if enough stitches
+    if (stitches >=cost) {
+        stitches -= cost;
+        inventory[item] += 1;
+        showPopup(`Crafted a ${item}! (-${cost} stitches)`);
+        updateDisplay();
+
+        //unlock Achievements
+        if (inventory.Scarf + inventory.Hat + inventory.Blanket === 1) {
+            unlockAchievement('First Craft');
+        }
+
+        const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
+        if (totalItems >=50) unlockAchievement('Master Crafter');
+    } else {
+        showPopup(`Sorry, not enough stitches to craft a ${item}!`);
+    }
 }
 
 //Selling Items
