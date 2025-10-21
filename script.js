@@ -7,6 +7,7 @@ let hookLevel = 0;
 let helperLevel = 0;
 let craftingSlots = 1;
 let rareYarnActive = false;
+let lastClickedElement = null;
 
 const inventory = {
     Scarf: 0,
@@ -41,14 +42,30 @@ function updateDisplay() {
     animateGlow();
 }
 
-function showPopup(message) {
+function showPopup(message, event) {
     popup.textContent = message;
     popup.style.opacity = 1;
-    popup.style.transform = 'translate(-50%, -10px)';
+    
+    const target = event ? event.target :  lastClickedElement;
+    
+    if (event) {
+        //So that the popup appears near the action
+        const rect = target.getBoundingClientRect();
+        popup.style.top = `${rect.top + window.scrollY - 10}px`;
+        popup.style.left = `${rect.left + rect.width / 2}px`;
+        popup.style.transform = 'translateX(-50%)';
+    } else {
+        //Sets to default center of viewport
+        popup.style.top = '20%';
+        popup.style.left = '50%';
+        popup.style.transform = 'translateX(-50%)';
+    }
+    
     popup.style.display = 'block';
+
     setTimeout(() => {
         popup.style.opacity = 0;
-        popup.style.transform = 'translate(-50%, -30px)';
+        setTimeout(() => {popup.style.display = 'none'; }, 300)
     }, 1500);
 }
 
@@ -67,7 +84,8 @@ function animateCounter(element, target) {
 }
 
 //How the Clicker Works
-yarn.addEventListener('click', () => {
+yarn.addEventListener('click', (e) => {
+    lastClickedElement = e.target;
     let earned = stitchesPerClick;
     if (rareYarnActive) earned *=2;
     stitches += earned;
@@ -76,6 +94,7 @@ yarn.addEventListener('click', () => {
     animateYarnClick();
     updateDisplay();
     unlockAchievement('First Stitch');
+    showPopup(`+${earned} stitches`, e);
 });
 
 //The Multiple Sparkles
@@ -124,27 +143,28 @@ function animateGlow() {
 setInterval(animateGlow, 50); //The glow continues
 
 //Buttons for Shop
-upgradeHookBtn.addEventListener('click', () => {
+upgradeHookBtn.addEventListener('click', (e) => {
+    lastClickedElement = e.target;
     if (coins >= 50) {
         coins -= 50;
         hookLevel += 1;
         stitchesPerClick += 1;
         updateDisplay();
         unlockAchievement('Hook Upgraded');
-    } else showPopup('Sorry, not enough coins!');
+    } else showPopup('Sorry, not enough coins!', e);
 });
 
-hireHelperBtn.addEventListener('click', () => {
+hireHelperBtn.addEventListener('click', (e) => {
     if (coins >= 200) {
         coins -= 200;
         helperLevel += 1;
         stitchesPerSecond += 1;
         updateDisplay();
         unlockAchievement('Helper Hired');
-    } else showPopup('Sorry, not enough coins!');
+    } else showPopup('Sorry, not enough coins!', e);
 });
 
-buyYarnBtn.addEventListener('click', () => {
+buyYarnBtn.addEventListener('click', (e) => {
     if (coins >= 300) {
         coins -= 300;
         rareYarnActive = true;
@@ -154,17 +174,17 @@ buyYarnBtn.addEventListener('click', () => {
             rareYarnActive = false;
             showPopup("Rare Yarn Effect Wore Off!");
         }, 30000);
-    } else showPopup('Sorry, not enough coins!');
+    } else showPopup('Sorry, not enough coins!', e);
 });
 
-expandWorkshopBtn.addEventListener('click', () => {
+expandWorkshopBtn.addEventListener('click', (e) => {
     if (coins >= 500) {
         coins -= 500; 
         craftingSlots += 1;
         createCraftingSlot();
         updateDisplay();
         showPopup("Workshop Expanded!");
-    } else showPopup('Sorry, not enough coins!');
+    } else showPopup('Sorry, not enough coins!', e);
 });
 
 //ALL Crafting 
