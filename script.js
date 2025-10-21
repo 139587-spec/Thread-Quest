@@ -52,15 +52,7 @@ function showPopup(message) {
     }, 1500);
 }
 
-function unlockAchievement(name) {
-    const achievement = [...achievementList.children].find(a => a.dataset.name === name);
-    if (achievement && !achievement.classList.contains('unlocked')) {
-        achievement.classList.add('unlocked');
-        achievement.style.transform = 'scale(1.1)';
-        setTimeout(() => achievement.style.transform = 'scale(1)', 500);
-        showPopup(`Achievement Unlocked: ${name}`);
-    }
-}
+ 
 
 //Counter Animation
 function animateCounter(element, target) {
@@ -138,7 +130,7 @@ upgradeHookBtn.addEventListener('click', () => {
         hookLevel += 1;
         stitchesPerClick += 1;
         updateDisplay();
-        unlockAchievement('Hook Upgraded!');
+        unlockAchievement('Hook Upgraded');
     } else showPopup('Sorry, not enough coins!');
 });
 
@@ -148,7 +140,7 @@ hireHelperBtn.addEventListener('click', () => {
         helperLevel += 1;
         stitchesPerSecond += 1;
         updateDisplay();
-        unlockAchievement('Helper Hired!');
+        unlockAchievement('Helper Hired');
     } else showPopup('Sorry, not enough coins!');
 });
 
@@ -223,7 +215,7 @@ function craftItem(item) {
 sellItemsBtn.addEventListener('click', () => {
     if (inventory.Scarf + inventory.Hat + inventory.Blanket > 0) {
         //calculate the coins based off of the item
-        const earnedCoins = inventory.Scarf * 5 + inventory.Hat * 10 + inventory.Blanket * 20;
+        const earnedCoins = inventory.Scarf * 1000000 + inventory.Hat * 25 + inventory.Blanket * 40;
         
         coins += earnedCoins;
         
@@ -244,6 +236,31 @@ setInterval(() => {
     stitches += stitchesPerSecond;
     updateDisplay();
 }, 1000);
+
+//the achievement unlock function
+function unlockAchievement(name) {
+    const achievement = [...achievementList.children].find(
+        a => a.dataset.name === name
+    );
+
+    if (achievement && !achievement.classList.contains('unlocked')) {
+       //This marks it as unlocked
+       achievement.classList.add('unlocked');
+       achievement.style.transform = 'scale(1.1)';
+       achievement.style.transition = 'transform 0.3s ease, box-shadow 0.3s ease';
+       achievement.style.boxShadow = '0 0 15px rgba(180,150,255,0.8)';
+
+       //resetting the animation
+       setTimeout(() => {
+         achievement.style.transform = 'scale(1)';
+         achievement.style.boxShadow = '';
+       }, 400);
+
+       //popup message
+       showPopup(`Achievement Unlocked: ${name}!`);
+   }
+}
+
 
 //Initialize
 window.craftItem = craftItem; //Make craftItem globally accessible
