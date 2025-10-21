@@ -42,15 +42,15 @@ function updateDisplay() {
     animateGlow();
 }
 
-function showPopup(message, event) {
+function showPopup(message, targetElement = null) {
     popup.textContent = message;
     popup.style.opacity = 1;
     
-    const target = event ? event.target :  lastClickedElement;
+    const el = targetElement ||  lastClickedElement;
     
-    if (event) {
+    if (el) {
         //So that the popup appears near the action
-        const rect = target.getBoundingClientRect();
+        const rect = el.getBoundingClientRect();
         popup.style.top = `${rect.top + window.scrollY - 10}px`;
         popup.style.left = `${rect.left + rect.width / 2}px`;
         popup.style.transform = 'translateX(-50%)';
@@ -94,7 +94,6 @@ yarn.addEventListener('click', (e) => {
     animateYarnClick();
     updateDisplay();
     unlockAchievement('First Stitch');
-    showPopup(`+${earned} stitches`, e);
 });
 
 //The Multiple Sparkles
@@ -221,21 +220,22 @@ function craftItem(item) {
 
         //unlock Achievements
         if (inventory.Scarf + inventory.Hat + inventory.Blanket === 1) {
-            unlockAchievement('First Craft');
+            unlockAchievement('First Craft', lastClickedElement);
         }
 
         const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
-        if (totalItems >=50) unlockAchievement('Master Crafter');
+        if (totalItems >=50) unlockAchievement('Master Crafter', lastClickedElement);
     } else {
         showPopup(`Sorry, not enough stitches to craft a ${item}!`);
     }
 }
 
 //Selling Items
-sellItemsBtn.addEventListener('click', () => {
+sellItemsBtn.addEventListener('click', (e) => {
+    lastClickedElement = e.target
     if (inventory.Scarf + inventory.Hat + inventory.Blanket > 0) {
         //calculate the coins based off of the item
-        const earnedCoins = inventory.Scarf * 1000000 + inventory.Hat * 25 + inventory.Blanket * 40;
+        const earnedCoins = inventory.Scarf * 15 + inventory.Hat * 25 + inventory.Blanket * 40;
         
         coins += earnedCoins;
         
@@ -245,9 +245,9 @@ sellItemsBtn.addEventListener('click', () => {
         inventory.Blanket = 0;
         
         updateDisplay();
-        showPopup(`Sold all items for ${earnedCoins} coins!`);
+        showPopup(`Sold all items for ${earnedCoins} coins!`, e.target);
     } else {
-        showPopup('No items to sell!');
+        showPopup('No items to sell!', e.target);
     }
 });
 
@@ -258,7 +258,7 @@ setInterval(() => {
 }, 1000);
 
 //the achievement unlock function
-function unlockAchievement(name) {
+function unlockAchievement(name, targetElement = null) {
     const achievement = [...achievementList.children].find(
         a => a.dataset.name === name
     );
@@ -277,7 +277,7 @@ function unlockAchievement(name) {
        }, 400);
 
        //popup message
-       showPopup(`Achievement Unlocked: ${name}!`);
+       showPopup(`Achievement Unlocked: ${name}!`, targetElement);
    }
 }
 
