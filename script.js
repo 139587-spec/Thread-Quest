@@ -31,6 +31,8 @@ const inventoryDisplay = document.getElementById('inventory');
 const sellItemsBtn = document.getElementById('sell-items');
 const achievementList = document.getElementById('achievement-list');
 const popup = document.getElementById('popup');
+const achievementSound = new Audio('assets/achievement.wav');
+
 
 //Helper functions
 function updateDisplay() {
@@ -202,11 +204,8 @@ function createCraftingSlot() {
 }
 createCraftingSlot();
 
-        const blanketBtn = document.createElement('button');
-        blanketBtn.textContent = 'Blanket';
-        blanketBtn.addEventListener('click', (e) => craftItem('Blanket', e));
-        
-        const costs = {
+function craftItem(item) {
+    const costs = {
         Scarf: 20,
         Hat: 35,
         Blanket: 60
@@ -223,14 +222,15 @@ createCraftingSlot();
 
         //unlock Achievements
         if (inventory.Scarf + inventory.Hat + inventory.Blanket === 1) {
-            unlockAchievement('First Craft', lastClickedElement);
+            unlockAchievement('First Craft');
         }
 
         const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
-        if (totalItems >=50) unlockAchievement('Master Crafter', lastClickedElement);
+        if (totalItems >=50) unlockAchievement('Master Crafter');
     } else {
         showPopup(`Sorry, not enough stitches to craft a ${item}!`);
     }
+}
 
 
 //Selling Items
@@ -238,7 +238,7 @@ sellItemsBtn.addEventListener('click', (e) => {
     lastClickedElement = e.target
     if (inventory.Scarf + inventory.Hat + inventory.Blanket > 0) {
         //calculate the coins based off of the item
-        const earnedCoins = inventory.Scarf * 15 + inventory.Hat * 25 + inventory.Blanket * 40;
+        const earnedCoins = inventory.Scarf * 100000 + inventory.Hat * 25 + inventory.Blanket * 40;
         
         coins += earnedCoins;
         
@@ -281,7 +281,12 @@ function unlockAchievement(name, targetElement = null) {
 
        //popup message
        showPopup(`Achievement Unlocked: ${name}!`, targetElement);
-   }
+       
+       //Sound
+       achievementSound.currentTime = 0;
+       achievementSound.play();
+   
+    }
 }
 
 
