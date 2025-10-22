@@ -202,8 +202,11 @@ function createCraftingSlot() {
 }
 createCraftingSlot();
 
-function craftItem(item) {
-    const costs = {
+        const blanketBtn = document.createElement('button');
+        blanketBtn.textContent = 'Blanket';
+        blanketBtn.addEventListener('click', (e) => craftItem('Blanket', e));
+        
+        const costs = {
         Scarf: 20,
         Hat: 35,
         Blanket: 60
@@ -228,7 +231,7 @@ function craftItem(item) {
     } else {
         showPopup(`Sorry, not enough stitches to craft a ${item}!`);
     }
-}
+
 
 //Selling Items
 sellItemsBtn.addEventListener('click', (e) => {
