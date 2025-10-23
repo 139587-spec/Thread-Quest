@@ -15,6 +15,38 @@ const inventory = {
     Blanket: 0
 };
 
+//This saves the game progress to a local storage
+function savegame() {
+    const gameState = {
+        stitches,
+        coins,
+        stitchesPerClick,
+        stitchesPerSecond,
+        hookLevel,
+        helperLevel,
+        craftingSlots,
+        rareYarnActive,
+        inventory
+    };
+    localStorage.setItem('threadQuestSave', JSON.stringify(gameState));
+}
+
+//This loads the game progress from the local storage
+function loadGame() {
+    const saved = localStorage.getItem('threadQuestSave');
+    if (saved) {
+        const gameState = JSON.parse(saved);
+        stitches = gameState.stitches || 0;
+        coins = gameState.coins || 0;
+        stitchesPerClick = gameState.stitchesPerClick || 1;
+        stitchesPerSecond = gameState.stitchesPerSecond || 0;
+        hookLevel = gameState.hookLevel || 0;
+        helperLevel = gameState.craftingSlot || 0;
+        rareYarnActive = gameState.rareYarnActive || false;
+        Object.assign(inventory, gameState.inventory || {Scarf:0, Hat:0, Blanket:0});
+    }
+}
+
 //ALL DOM elements
 const stitchesDisplay = document.getElementById('stitches');
 const coinsDisplay = document.getElementById('coins');
@@ -32,6 +64,7 @@ const sellItemsBtn = document.getElementById('sell-items');
 const achievementList = document.getElementById('achievement-list');
 const popup = document.getElementById('popup');
 const achievementSound = new Audio('assets/achievement.wav');
+achievementSound.volume = 0.2;
 
 
 //Helper functions
@@ -96,6 +129,7 @@ yarn.addEventListener('click', (e) => {
     animateYarnClick();
     updateDisplay();
     unlockAchievement('First Stitch');
+    savegame();
 });
 
 //The Multiple Sparkles
@@ -152,6 +186,7 @@ upgradeHookBtn.addEventListener('click', (e) => {
         stitchesPerClick += 1;
         updateDisplay();
         unlockAchievement('Hook Upgraded');
+        savegame();
     } else showPopup('Sorry, not enough coins!', e);
 });
 
@@ -162,6 +197,7 @@ hireHelperBtn.addEventListener('click', (e) => {
         stitchesPerSecond += 1;
         updateDisplay();
         unlockAchievement('Helper Hired');
+        savegame();
     } else showPopup('Sorry, not enough coins!', e);
 });
 
@@ -185,6 +221,7 @@ expandWorkshopBtn.addEventListener('click', (e) => {
         createCraftingSlot();
         updateDisplay();
         showPopup("Workshop Expanded!");
+        savegame();
     } else showPopup('Sorry, not enough coins!', e);
 });
 
@@ -239,6 +276,7 @@ function craftItem(item) {
 
         const totalItems = inventory.Scarf + inventory.Hat + inventory.Blanket;
         if (totalItems >=50) unlockAchievement('Master Crafter');
+        savegame();
     } else {
         showPopup(`Sorry, not enough stitches to craft a ${item}!`);
     }
@@ -261,6 +299,7 @@ sellItemsBtn.addEventListener('click', (e) => {
         
         updateDisplay();
         showPopup(`Sold all items for ${earnedCoins} coins!`, e.target);
+        savegame();
     } else {
         showPopup('No items to sell!', e.target);
     }
@@ -304,6 +343,8 @@ function unlockAchievement(name, targetElement = null) {
 
 //Initialize
 window.craftItem = craftItem; //Make craftItem globally accessible
+
+loadGame();
 updateDisplay();
 
 //glow pulse for yarn
