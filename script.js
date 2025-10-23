@@ -28,12 +28,12 @@ function savegame() {
         rareYarnActive,
         inventory
     };
-    localStorage.setItem('threadQuestSave', JSON.stringify(gameState));
+    sessionStorage.setItem('threadQuestSave', JSON.stringify(gameState));
 }
 
 //This loads the game progress from the local storage
 function loadGame() {
-    const saved = localStorage.getItem('threadQuestSave');
+    const saved = sessionStorage.getItem('threadQuestSave');
     if (saved) {
         const gameState = JSON.parse(saved);
         stitches = gameState.stitches || 0;
@@ -79,7 +79,6 @@ function updateDisplay() {
 
 function showPopup(message, targetElement = null) {
     popup.textContent = message;
-    popup.style.opacity = 1;
     
     const el = targetElement ||  lastClickedElement;
     
@@ -93,14 +92,19 @@ function showPopup(message, targetElement = null) {
         //Sets to default center of viewport
         popup.style.top = '20%';
         popup.style.left = '50%';
-        popup.style.transform = 'translateX(-50%)';
     }
     
+    //animation
     popup.style.display = 'block';
+    requestAnimationFrame(() => {
+        popup.style.opacity = 1;
+        popup.style.transform = 'translateX(-50%) translateY(0)';
+    });
 
     setTimeout(() => {
         popup.style.opacity = 0;
-        setTimeout(() => {popup.style.display = 'none'; }, 300)
+        popup.style.transform = 'translateX(-50%) translateY(-20%)';
+        setTimeout(() => {popup.style.display = 'none'; }, 400)
     }, 1500);
 }
 
@@ -351,7 +355,41 @@ updateDisplay();
 const yarnElement = document.getElementById('yarn');
 yarnElement.classList.add('yarn-glow-animation');
 
+//reset button
+document.addEventListener('DOMContentLoaded', () => {
+const resetBtn = document.getElementById('reset-game');
 
+resetBtn.addEventListener('click', () => {
+    if (confirm("Are you sure you want to reset the game?")) {
+        //this will clear the local history
+        sessionStorage.removeItem('threadQuestSave');
 
+        //reset all the variables
+        stitches = 0;
+        coins = 0;
+        stitchesPerClick = 1;
+        stitchesPerSecond = 0;
+        hookLevel = 0;
+        helperLevel = 0;
+        craftingSlots = 1;
+        rareYarnActive = false;
+        Object.keys(inventory).forEach(key => inventory[key] = 0);
 
+        //reset achievements visually
+        document.querySelectorAll('#achievement-list .achievement').forEach(a => {
+            a.classList.remove('unlocked');
+            a.style.boxShadow = '';
+            a.style.transform = '';
+        });
 
+        //refresh the crafting slots
+        createCraftingSlot();
+
+        //update the display
+        updateDisplay();
+
+        //popup
+        showPopup("Game Fully Reset!");
+    }
+});
+});
