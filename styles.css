@@ -257,7 +257,29 @@ button[data-tooltip]:hover::after {
 }
 
 /* Crafting Buttons */
-.crafting
+.crafting-slot button {
+    background: linear-gradient(135deg, #7c6cb8, #b5a0ff);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 16px;
+    font-weight: bold;
+    font-size: 0.95em;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(150, 120, 255, 0.4);
+    transition: transform 0.15s ease, box-shadow 0.2 ease, background 0.2 ease;
+}
+
+.crafting-slot button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(150, 120, 255, 0.6);
+    background: linear-gradient(135deg, #8c75c8, #c0a8ff);
+}
+
+.crafting-slot button:active {
+    transform: scale(0.97);
+    box-shadow: 0 3px 6px rgba(150, 120, 255, 0.5);
+}
 
 /* Achievements */
 .achievements.card {

@@ -191,13 +191,25 @@ expandWorkshopBtn.addEventListener('click', (e) => {
 //ALL Crafting 
 function createCraftingSlot() {
     craftingSlotsContainer.innerHTML = '';
+
+    const costs = {
+        Scarf: 20,
+        Hat: 35,
+        Blanket: 60
+    };
+    
     for (let i = 0; i < craftingSlots; i++) {
         const slot = document.createElement('div');
         slot.className = 'crafting-slot';
         slot.innerHTML = `
           <button onclick="craftItem('Scarf')">Scarf</button>
+          <p class="craft-cost">Cost: ${costs.Scarf} stitches</p>
+          
           <button onclick="craftItem('Hat')">Hat</button>
+          <p class="craft-cost">Cost: ${costs.Hat} stitches</p>
+          
           <button onclick="craftItem('Blanket')">Blanket</button>
+          <p class="craft-cost">Cost: ${costs.Blanket} stitches</p>
         `;
         craftingSlotsContainer.appendChild(slot);
     }
