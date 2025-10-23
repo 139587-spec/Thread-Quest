@@ -1,3 +1,5 @@
+window.history.replaceState({}, "Thread Quest 🧵", "ThreadQuest");
+
 //variable
 let stitches = 0;
 let coins = 0;
