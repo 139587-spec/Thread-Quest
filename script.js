@@ -407,7 +407,7 @@ sellItemsBtn.addEventListener('click', (e) => {
     lastClickedElement = e.target
     if (inventory.Scarf + inventory.Hat + inventory.Blanket > 0) {
         //calculate the coins based off of the item
-        const earnedCoins = inventory.Scarf * 100000 + inventory.Hat * 25 + inventory.Blanket * 40;
+        const earnedCoins = inventory.Scarf * 15 + inventory.Hat * 25 + inventory.Blanket * 40;
         
         coins += earnedCoins;
         
