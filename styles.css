@@ -23,17 +23,20 @@ body {
 }
 
 .container {
-    width: 80%;
-    max-width: 1400px;
-    min-width: 800px;
+    width: 90%;            
+    max-width: 1200px;        
+    min-width: 800px;        
+    margin: 50px auto;        
     background-color: #dcd0ff;
-    padding: 40px;
+    padding: 50px;           
     border-radius: 20px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     animation: fadeInUp 1s ease forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 1;
 }
 
 /* Headings */
@@ -57,6 +60,8 @@ header .subtitle {
 
 /* Progress and Stats Bar */
 .stats { 
+    width: 100%;
+    max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -114,11 +119,11 @@ header .subtitle {
 }
 
 #yarn {
-    width: 220px;
+    width: 30vw;            /* 30% of viewport width */
+    max-width: 400px;       /* optional cap */
+    min-width: 180px;       /* optional floor */
     display: block;
     margin: 0 auto;
-    transition: transform 0.15s ease, box-shadow 0.3 ease;
-    border-radius: 0;
     /*yarn itself with glow*/
     box-shadow: 0 0 40px rgba(150, 120, 255, 0.5), 0 0 80px rgba(150, 120, 255, 0.3);
     filter: drop-shadow(0 0 20px rgba(150,120,255,0.4));
