@@ -72,8 +72,6 @@ function animateParticles() {
         
         ctx.globalAlpha = 1;
         ctx.globalCompositeOperation = 'source-over';
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.restore();
 
         //movement
@@ -156,7 +154,8 @@ function loadGame() {
         stitchesPerClick = gameState.stitchesPerClick || 1;
         stitchesPerSecond = gameState.stitchesPerSecond || 0;
         hookLevel = gameState.hookLevel || 0;
-        helperLevel = gameState.craftingSlot || 0;
+        helperLevel = gameState.helperLevel || 0;
+        craftingSlots = gameState.craftingSlots || 1;
         rareYarnActive = gameState.rareYarnActive || false;
         Object.assign(inventory, gameState.inventory || {Scarf:0, Hat:0, Blanket:0});
     }
