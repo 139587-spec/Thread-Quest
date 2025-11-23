@@ -25,8 +25,8 @@ body {
 
 .container {
     width: 90%;            
-    max-width: 1500px;              
-    margin: 50px auto;        
+    max-width: 1200px;              
+    margin: 0 auto;        
     background-color: #dcd0ff;
     padding: 30px;           
     border-radius: 20px;
@@ -37,6 +37,12 @@ body {
     align-items: center;
     position: relative;
     z-index: 1;
+}
+
+.game {
+  width: 100%;          
+  max-width: 1000px;    
+  margin: 0 auto;       
 }
 
 /* Headings */
