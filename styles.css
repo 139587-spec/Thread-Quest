@@ -1,3 +1,4 @@
+
 /* Base Style */
 * {
     box-sizing: border-box;
@@ -24,11 +25,10 @@ body {
 
 .container {
     width: 90%;            
-    max-width: 1200px;        
-    min-width: 800px;        
+    max-width: 1500px;              
     margin: 50px auto;        
     background-color: #dcd0ff;
-    padding: 50px;           
+    padding: 30px;           
     border-radius: 20px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.15);
     animation: fadeInUp 1s ease forwards;
